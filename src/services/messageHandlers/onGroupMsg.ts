@@ -1,7 +1,4 @@
-import {
-	Context,
-	NextFunction,
-} from 'https://deno.land/x/grammy@v1.16.0/mod.ts';
+import { Context, NextFunction } from '../../../deps.ts';
 
 const onGroupMsg = (ctx: Context, next: NextFunction) => {
 	const { message } = ctx;

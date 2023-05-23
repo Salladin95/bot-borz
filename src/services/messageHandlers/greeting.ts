@@ -1,7 +1,4 @@
-import {
-	Context,
-	NextFunction,
-} from 'https://deno.land/x/grammy@v1.16.0/mod.ts';
+import { Context, NextFunction } from '../../../deps.ts';
 
 const greetNewMembers = (ctx: Context, next: NextFunction) => {
 	console.log('new member');

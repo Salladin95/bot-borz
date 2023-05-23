@@ -1,4 +1,4 @@
-import { Message } from 'https://deno.land/x/grammy_types@v3.1.1/message.ts';
+import { Message } from '../../../deps.ts';
 import { getTags } from './workingWithText.ts';
 
 export type IProfile = {

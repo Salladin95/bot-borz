@@ -1,8 +1,4 @@
-import {
-	Context,
-	NextFunction,
-} from 'https://deno.land/x/grammy@v1.16.0/mod.ts';
-
+import { Context, NextFunction } from '../../../deps.ts';
 import { getWordDefinition } from '../../api/dictionaryApi/dictionaryApi.ts';
 import { renderWordDefnition } from '../../components/index.ts';
 

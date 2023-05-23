@@ -1,5 +1,6 @@
 {
   "tasks": {
+    "build": "deno cache ./deps.ts & deno cache ./src/main.ts",
     "dev": "deno run --allow-read --allow-env --allow-net --watch ./src/bot.ts",
     "start": "deno run --allow-read --allow-env --allow-net ./src/bot.ts",
     "gen": "supabase gen types typescript --project-id yxruvgnitxbcbmiaovdz"
