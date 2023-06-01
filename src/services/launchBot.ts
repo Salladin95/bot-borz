@@ -1,10 +1,4 @@
-import {
-	Bot,
-	Context,
-	GrammyError,
-	HttpError,
-} from 'https://deno.land/x/grammy@v1.16.0/mod.ts';
-
+import { Bot, Context, GrammyError, HttpError } from '../../deps.ts';
 import onGroupMsg from '../services/messageHandlers/onGroupMsg.ts';
 import onPrivateMsg from '../services/messageHandlers/onPrivateMsg.ts';
 import greetNewMembers from './messageHandlers/greeting.ts';
@@ -43,6 +37,9 @@ const launchBot = (token: string) => {
 			console.error('Unknown error:', e);
 		}
 	});
+
+	Deno.addSignalListener('SIGINT', () => bot.stop());
+	Deno.addSignalListener('SIGTERM', () => bot.stop());
 };
 
 export default launchBot;

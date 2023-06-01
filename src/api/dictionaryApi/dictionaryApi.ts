@@ -1,4 +1,4 @@
-import axiod from 'https://deno.land/x/axiod@0.26.2/mod.ts';
+import { axiod } from '../../../deps.ts';
 import { WordDefinition } from './dictionaryApi.contracts.ts';
 
 export const getWordDefinition = async (word = '') => {

@@ -8,7 +8,6 @@ export type FormattedDefinition = Omit<Definition, 'synonyms' | 'antonyms'>;
 type Meaning = { partOfSpeech: string; definitions: FormattedDefinition[] };
 
 export const formatWord = (word: WordDefinition) => {
-	console.log(word);
 	let meanings: Meaning[] = [];
 
 	if (word.meanings.length) {

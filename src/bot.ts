@@ -1,7 +1,6 @@
-import 'https://deno.land/std@0.187.0/dotenv/load.ts';
-
+import { config } from '../config.ts';
 import launchBot from './services/launchBot.ts';
 
-const token = Deno.env.get('TOKEN');
+const token = config.botToken;
 
 token && launchBot(token);
