@@ -1,4 +1,4 @@
-import "https://deno.land/x/dotenv@v3.2.2/load.ts";
+import 'https://deno.land/x/dotenv@v3.2.2/load.ts';
 
 export enum EnvVariables {
 	botToken = 'BOT_TOKEN',
@@ -7,6 +7,7 @@ export enum EnvVariables {
 	anonKey = 'ANON_KEY',
 	functionSecret = 'FUNCTION_SECRET',
 	yandexApiKey = 'YANDEX_API_KEY',
+	prometheusPort = 'PROMETHEUS_PORT',
 }
 
 export const config: Record<keyof typeof EnvVariables, string | undefined> = {
@@ -16,4 +17,5 @@ export const config: Record<keyof typeof EnvVariables, string | undefined> = {
 	anonKey: Deno.env.get(EnvVariables.anonKey),
 	functionSecret: Deno.env.get(EnvVariables.functionSecret),
 	yandexApiKey: Deno.env.get(EnvVariables.yandexApiKey),
+	prometheusPort: Deno.env.get(EnvVariables.prometheusPort),
 };

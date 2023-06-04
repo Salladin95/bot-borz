@@ -1,8 +1,9 @@
-import { Context, NextFunction } from '../../../deps.ts';
+import { MyContext } from '../../../contracts.ts';
+import { NextFunction } from '../../../deps.ts';
 import { getWordDefinition } from '../../api/dictionaryApi/dictionaryApi.ts';
 import { renderWordDefnition } from '../../components/index.ts';
 
-const onPrivateMsg = (ctx: Context, next: NextFunction) => {
+const onPrivateMsg = (ctx: MyContext, next: NextFunction) => {
 	const { message } = ctx;
 
 	if (message?.new_chat_members || !message || !message.text) {

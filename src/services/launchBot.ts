@@ -1,10 +1,13 @@
+import { MyContext } from '../../contracts.ts';
 import { Bot, Context, GrammyError, HttpError } from '../../deps.ts';
 import onGroupMsg from '../services/messageHandlers/onGroupMsg.ts';
 import onPrivateMsg from '../services/messageHandlers/onPrivateMsg.ts';
+import { startMetricsServer } from './collectMetrics.ts';
 import greetNewMembers from './messageHandlers/greeting.ts';
 
 const launchBot = (token: string) => {
-	const bot = new Bot(token);
+	const bot = new Bot<MyContext>(token);
+	startMetricsServer(bot);
 
 	bot.command(
 		'start',
@@ -25,6 +28,7 @@ const launchBot = (token: string) => {
 	bot.start();
 	console.log('Bot is listening');
 
+
 	bot.catch((err) => {
 		const ctx = err.ctx;
 		console.error(`Error while handling update ${ctx.update.update_id}:`);
@@ -38,8 +42,8 @@ const launchBot = (token: string) => {
 		}
 	});
 
-	Deno.addSignalListener('SIGINT', () => bot.stop());
-	Deno.addSignalListener('SIGTERM', () => bot.stop());
+	// Deno.addSignalListener('SIGINT', () => bot.stop());
+	// Deno.addSignalListener('SIGTERM', () => bot.stop());
 };
 
 export default launchBot;

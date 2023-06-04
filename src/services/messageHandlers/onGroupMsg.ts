@@ -1,6 +1,7 @@
-import { Context, NextFunction } from '../../../deps.ts';
+import { MyContext } from '../../../contracts.ts';
+import { NextFunction } from '../../../deps.ts';
 
-const onGroupMsg = (ctx: Context, next: NextFunction) => {
+const onGroupMsg = (ctx: MyContext, next: NextFunction) => {
 	const { message } = ctx;
 
 	if (message?.new_chat_members || !message || !message.text) {
