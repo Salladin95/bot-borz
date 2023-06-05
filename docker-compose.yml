@@ -7,7 +7,7 @@ services:
     image: bot-borz
     build: .
     ports:
-      - 6000:6000
+      - ${APP_PORT}:${APP_PORT}
     deploy:
       restart_policy:
         condition: on-failure
@@ -29,7 +29,7 @@ services:
     command:
       - '--config.file=/etc/prometheus/prometheus.yml'
     ports:
-      - '9090:9090'
+      - ${PROMETHEUS_PORT}:${PROMETHEUS_PORT}
     networks:
       - net
 
@@ -43,7 +43,7 @@ services:
     depends_on:
       - prometheus
     ports:
-      - '3000:3000'
+      - ${GRAFANA_PORT}:${GRAFANA_PORT}
     networks:
       - net
 

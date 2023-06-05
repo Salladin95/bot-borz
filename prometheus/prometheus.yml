@@ -7,6 +7,6 @@ scrape_configs:
       - targets: ['bot-borz:6000']
         labels:
           service: 'app-exporter'
-          group: 'testing'
+          group: 'bot-conf'
           name: 'app-exporter'
   

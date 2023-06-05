@@ -6,6 +6,6 @@ COPY . .
 
 RUN deno task build
 
-EXPOSE ${PORT}
+EXPOSE ${APP_PORT}
 
 CMD ["deno", "task", "start"]

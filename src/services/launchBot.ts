@@ -2,12 +2,12 @@ import { MyContext } from '../../contracts.ts';
 import { Bot, Context, GrammyError, HttpError } from '../../deps.ts';
 import onGroupMsg from '../services/messageHandlers/onGroupMsg.ts';
 import onPrivateMsg from '../services/messageHandlers/onPrivateMsg.ts';
-import { startMetricsServer } from './collectMetrics.ts';
+import { collectMetrics } from './collectMetrics/collectMetrics.ts';
 import greetNewMembers from './messageHandlers/greeting.ts';
 
 const launchBot = (token: string) => {
 	const bot = new Bot<MyContext>(token);
-	startMetricsServer(bot);
+	collectMetrics(bot);
 
 	bot.command(
 		'start',
@@ -27,7 +27,6 @@ const launchBot = (token: string) => {
 
 	bot.start();
 	console.log('Bot is listening');
-
 
 	bot.catch((err) => {
 		const ctx = err.ctx;

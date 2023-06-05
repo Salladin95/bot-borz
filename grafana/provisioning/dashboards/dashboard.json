@@ -84,7 +84,7 @@
         "x": 0,
         "y": 0
       },
-      "id": 2,
+      "id": 1,
       "options": {
         "legend": {
           "calcs": [],
@@ -104,7 +104,7 @@
             "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "builder",
-          "expr": "new_message_bucket",
+          "expr": "new_incoming_message_bucket",
           "legendFormat": "__auto",
           "range": true,
           "refId": "A"
@@ -127,7 +127,7 @@
   },
   "timepicker": {},
   "timezone": "",
-  "title": "New dashboard",
+  "title": "New messages",
   "version": 0,
   "weekStart": ""
 }
