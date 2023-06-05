@@ -5,8 +5,8 @@ import { startMetricsServer } from './startMetricsServer.ts';
 
 const port = config.appPort ?? 6000;
 
-export const collectMetrics = async (bot: MyBot) => {
-	const { controller, listenPromise } = startMetricsServer(+port);
+export const collectMetrics = (bot: MyBot) => {
+	const { controller } = startMetricsServer(+port);
 	
 	bot.use(collectMessages);
 
@@ -18,6 +18,4 @@ export const collectMetrics = async (bot: MyBot) => {
 		controller.abort();
 		bot.stop();
 	});
-
-	await listenPromise;
 };

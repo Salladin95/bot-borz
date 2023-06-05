@@ -40,9 +40,6 @@ const launchBot = (token: string) => {
 			console.error('Unknown error:', e);
 		}
 	});
-
-	// Deno.addSignalListener('SIGINT', () => bot.stop());
-	// Deno.addSignalListener('SIGTERM', () => bot.stop());
 };
 
 export default launchBot;
