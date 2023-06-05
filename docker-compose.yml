@@ -20,30 +20,30 @@ services:
       - ./src:/usr/src/app/src
 
   prometheus:
+    image: prom/prometheus:latest
     depends_on:
       - app
-    image: prom/prometheus:latest
+    ports:
+      - ${PROMETHEUS_PORT}:${PROMETHEUS_PORT}
     volumes:
       - prometheus_data:/prometheus
       - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
     command:
       - '--config.file=/etc/prometheus/prometheus.yml'
-    ports:
-      - ${PROMETHEUS_PORT}:${PROMETHEUS_PORT}
     networks:
       - net
 
   grafana:
     image: grafana/grafana:latest
+    ports:
+      - ${GRAFANA_PORT}:${GRAFANA_PORT}
+    user: "${UID}:${GID}"
     volumes:
       - ./grafana/grafana.ini:/etc/grafana/grafana.ini
       - ./grafana/provisioning:/etc/grafana/provisioning
       - ./grafana/data:/var/lib/grafana
-    user: "1000"
     depends_on:
       - prometheus
-    ports:
-      - ${GRAFANA_PORT}:${GRAFANA_PORT}
     networks:
       - net
 
