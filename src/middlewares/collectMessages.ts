@@ -1,25 +1,11 @@
 import { MyContext } from "../../contracts.ts";
-import { NextFunction, prom } from "../../deps.ts";
-import getErrorMessage from "../helpers/getErrorMessage.ts";
+import { NextFunction } from "../../deps.ts";
+import { newMessageHistogram } from "../services/collectMetrics/histograms.ts";
 
-export const collectMessages = (ctx: MyContext, next: NextFunction, register: prom.Registry) => {
-  const { Histogram } = prom;
-  const newMessage = new Histogram({
-    name: 'new_incoming_message',
-    help: 'Incoming message for bot',
-    labelNames: ['message']
-  });
-
-  try {
-    register.registerMetric(newMessage);
-  } catch (err) {
-    console.warn('Get an error while registering HISTOGRAM')
-    console.warn(getErrorMessage(err));
-  }
-
+export const collectMessages = (ctx: MyContext, next: NextFunction) => {
   if (ctx.message) {
-    const time = newMessage.startTimer();
-    newMessage.observe({ message: JSON.stringify(ctx.message) }, time())
+    const time = newMessageHistogram.startTimer();
+    newMessageHistogram.observe({ message: JSON.stringify(ctx.message) }, time());
   }
   next();
 }

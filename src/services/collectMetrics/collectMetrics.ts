@@ -6,9 +6,9 @@ import { startMetricsServer } from './startMetricsServer.ts';
 const port = config.appPort ?? 6000;
 
 export const collectMetrics = async (bot: MyBot) => {
-	const { controller, listenPromise, register } = startMetricsServer(+port);
+	const { controller, listenPromise } = startMetricsServer(+port);
 	
-	bot.use((ctx, next) => collectMessages(ctx, next, register));
+	bot.use(collectMessages);
 
 	Deno.addSignalListener('SIGINT', () => {
 		controller.abort();

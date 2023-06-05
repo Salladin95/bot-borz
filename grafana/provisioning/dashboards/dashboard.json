@@ -18,6 +18,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
+  "id": 4,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -127,7 +128,8 @@
   },
   "timepicker": {},
   "timezone": "",
-  "title": "New messages",
-  "version": 0,
+  "title": "New incoming messages",
+  "uid": "e65e3cdf-39cd-483c-90f6-a88fbf61c438",
+  "version": 1,
   "weekStart": ""
 }
