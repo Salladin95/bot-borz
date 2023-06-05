@@ -7,7 +7,7 @@ services:
     image: bot-borz
     build: .
     ports:
-      - ${PORT}:${PORT}
+      - 6000:6000
     deploy:
       restart_policy:
         condition: on-failure
@@ -18,9 +18,37 @@ services:
       - net
     volumes:
       - ./src:/usr/src/app/src
+
+  prometheus:
+    depends_on:
+      - app
+    image: prom/prometheus:latest
+    volumes:
+      - prometheus_data:/prometheus
+      - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+    ports:
+      - '9090:9090'
+    networks:
+      - net
+
+  grafana:
+    image: grafana/grafana:latest
+    volumes:
+      - ./grafana/grafana.ini:/etc/grafana/grafana.ini
+      - ./grafana/provisioning:/etc/grafana/provisioning
+      - ./grafana/data:/var/lib/grafana
+    user: "1000"
+    depends_on:
+      - prometheus
+    ports:
+      - '3000:3000'
+    networks:
+      - net
+
 volumes:
-  pgdata:
-    driver: local
+  prometheus_data: {}
 
 networks:
   net:

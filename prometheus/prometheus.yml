@@ -1,0 +1,12 @@
+scrape_configs:
+  - job_name: 'prometheus'
+    scrape_interval: 5s
+    metrics_path: /metrics
+
+    static_configs:
+      - targets: ['bot-borz:6000']
+        labels:
+          service: 'app-exporter'
+          group: 'testing'
+          name: 'app-exporter'
+  

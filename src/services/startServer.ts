@@ -21,8 +21,8 @@ export const startServer = (port: number) => {
     help: 'new_message_help',
     labelNames: ['from', 'text']
   });
-  // histogram.observe(10); // Observe value in histogram
+  register.registerMetric(histogram);
 
-  const listenPromise = app.listen({ port, signal });
-  return { controller, router, register,  listenPromise, registry, histogram };
+  const listenPromise = app.listen({ port: 6000, signal });
+  return { controller, router, register, app,  listenPromise, registry, histogram };
 }

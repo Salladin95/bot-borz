@@ -2,7 +2,7 @@ import { config } from '../../config.ts';
 import { MyBot } from '../../contracts.ts';
 import { startServer } from './startServer.ts';
 
-const port = config.prometheusPort ?? 6000;
+const port = config.port ?? 6000;
 
 export const startMetricsServer = async (bot: MyBot) => {
 	const { router, register, controller, listenPromise, histogram } = startServer(+port);
